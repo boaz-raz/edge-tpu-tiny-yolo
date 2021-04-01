@@ -31,6 +31,7 @@ out_fn = sys.argv[2]
 
 # Convert and apply full integer quantization
 converter = tf.compat.v1.lite.TFLiteConverter.from_keras_model_file(model_fn)
+converter.experimental_new_converter = False
 converter.optimizations = [tf.lite.Optimize.DEFAULT]
 converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
 # Set inputs and outputs of network to 8-bit unsigned integer
